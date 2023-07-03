@@ -12,7 +12,23 @@ code {
     monospace;
 }
 
-
+/* 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+.home__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input__wrapper {
+  display: flex;
+}
+
+.searchBar {
+  height: 20px;
+  width: 50vw;
+}
