@@ -6,15 +6,15 @@ function PokemonInfo () {
     let { id }  = useParams();
     console.log(`id is ${id}`)
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
-    console.log(`url is ${url}`)
-    useEffect(() => {
-        axios.get(url).then((success) => console.log(success))
+    console.log(`url is ${url}, is is ${id}`)
+    // useEffect(() => {
+    //     axios.get(url).then((success) => console.log(success))
 
-    }, [])
+    // }, [])
   
     return (
         <div>
-            here lies a mon
+            here lies a {id}
         </div>
     )
 }
