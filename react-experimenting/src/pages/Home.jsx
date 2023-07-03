@@ -7,7 +7,9 @@ import Loading from "./Loading";
 function Home () {
     const [input, setInput] = useState("");
     function handleChange(event) {
-        setInput(event.target.value)
+        const toSearch = event.target.value.toLowerCase();
+        console.log(`toSearch is ${toSearch}`)
+        setInput(toSearch)
         console.log(`input is now ${input}`)
     }
 
