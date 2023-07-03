@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import "../index.css"
+import axios from "axios";
+import Loading from "./Loading";
 
 function Home () {
     const [input, setInput] = useState("");
@@ -10,14 +12,21 @@ function Home () {
     }
 
     const navigate = useNavigate();
+    const url = `https://pokeapi.co/api/v2/pokemon/`
 
-    function search () {
-        if (input.trim() !== "");
-        navigate(`/${input}`)
-
+    async function getData() {
+        try {
+            const response = await axios.get(`${url}${input}`)
+            if (input.trim() !== "");
+            navigate(`/${input}`)
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+
     return (
-        <div className="home__container">
+        <div className="container">
             <h1 className="text-3xl font-bold underline">Welcome to Pokedex!</h1>
             <div className="input__wrapper">
                 <input 
@@ -26,11 +35,13 @@ function Home () {
                 placeholder="Enter the Pokemon name or dex number"
                 onChange={handleChange}
                 />
-                <button onClick={search}>Search</button>
+                <button onClick={getData}>Search</button>
             </div>
+            
         </div>
     )
 }
 
 export default Home;
+
 
