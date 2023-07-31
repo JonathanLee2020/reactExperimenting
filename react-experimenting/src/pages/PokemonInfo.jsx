@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 function PokemonInfo () {
     let { id }  = useParams();
-    console.log(`id is ${id}`)
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
     console.log(`url is ${url}, is is ${id}`)
     const navigate = useNavigate();
