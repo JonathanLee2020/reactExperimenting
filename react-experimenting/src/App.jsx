@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PokemonInfo from './pages/PokemonInfo';
 import Home from './pages/Home';
 import BigData from './pages/BigData';
+import Home2 from './pages/Home2';
 
 function App() {
   const url = "https://pokeapi.co/api/v2/pokemon"
@@ -17,7 +18,7 @@ function App() {
     <Router>
     <div>
         <Routes>
-          <Route path="/" element={<Home/>}></Route>
+          <Route path="/" element={<Home2/>}></Route>
           <Route path="/:id" element={<PokemonInfo/>}></Route>
         </Routes>
     </div>
