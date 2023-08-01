@@ -12,8 +12,8 @@ export default function Home2 () {
     const [input, getInput] = useState("");
     const [fullList, getFullList] = useState([]);
     const [filteredPokemon, setFilteredPokemon] = useState([]);
-    const url = `https://pokeapi.co/api/v2/pokemon`
-
+    const url = `https://pokeapi.co/api/v2/pokemon`;
+    const [empty, setEmpty] = useState(false);
     useEffect(() => {
         console.log("testing ")
         async function getFullPokedex () {
@@ -31,6 +31,7 @@ export default function Home2 () {
         console.log(event.target.value);
         getInput(event.target.value);
         if (event.target.value.length) {
+            setEmpty(false);
             setFilteredPokemon(fullList.filter((pokemon) => {
                 for (let i = 0; i < event.target.value.length; i++) {
                     if (pokemon.name[i] !== event.target.value[i]) return false;
@@ -46,6 +47,7 @@ export default function Home2 () {
     const navigate = useNavigate();
     
     async function search () {
+        if (!input.length) setEmpty(true); 
         const link = `${url}/${input}`;
         await axios.get(link
             ).then((response)  => {
@@ -71,10 +73,18 @@ export default function Home2 () {
                 onClick={search}
                 >Search</button>
             </div>
+            {empty && 
+                <span>please enter an input</span>
+            }
             {input.length !== 0 && 
                 <ul>
                     {filteredPokemon.map((pokemon) => {
-                        return  <li key={pokemon.name}>{pokemon.name}</li>
+                        return (
+                            <Link to={`./${pokemon.name}`}>
+                                <li key={pokemon.name}>{pokemon.name}</li>
+                            </Link>
+                        )
+                        
                     })}
                 </ul>
             }
